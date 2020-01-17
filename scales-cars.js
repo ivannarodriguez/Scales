@@ -58,11 +58,13 @@ let circles = canvas.selectAll('circle')
  */
 // add axis (disp is horizontal, mpg is vertical)
 let hAxis = d3.axisBottom()
-              .scale(dispscale)
-              .ticks(7);
+              .scale(dispscale);
+              // .attr("stroke-dasharray", "2,2");
 let vAxis = d3.axisLeft()
               .scale(mpgscale)
-              .ticks(7);
+              .ticks(7)
+              .tickSize([-570]);
+              // .attr("stroke-dasharray", "2,2");
 //append g element for axis
 canvas.append("g")
       .attr("transform", "translate(0,0)")
@@ -79,3 +81,8 @@ canvas.append("text")
       .attr("transform", "translate(300,400)")
       .style("text-anchor", "middle")
       .text("disp");
+
+//tickmarks
+d3.selectAll('.tick')
+      .select('line')
+      .style("stroke-dasharray", "2,2");
