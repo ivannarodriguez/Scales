@@ -6,7 +6,7 @@
 // let max = d3.max(cars.map(d => d.mpg))
 
 //adding a margin to the svg
-let margin = {top: 5, bottom: 5, left: 20, right: 20 };
+let margin = {top: 5, bottom: 5, left: 50, right: 20 };
 let svgWidth = 700;
 let svgHeight = 500;
 let width = svgWidth - margin.left - margin.right;
@@ -58,13 +58,24 @@ let circles = canvas.selectAll('circle')
  */
 // add axis (disp is horizontal, mpg is vertical)
 let hAxis = d3.axisBottom()
-              .scale(dispscale);
+              .scale(dispscale)
+              .ticks(7);
 let vAxis = d3.axisLeft()
-              .scale(mpgscale);
+              .scale(mpgscale)
+              .ticks(7);
 //append g element for axis
 canvas.append("g")
       .attr("transform", "translate(0,0)")
       .call(vAxis);
+canvas.append("text")
+      .attr("transform", "translate(-30,200)")
+      .style("text-anchor", "middle")
+      .text("mpg");
+
 canvas.append("g")
       .attr("transform", "translate(0"+","+370+")")
       .call(hAxis);
+canvas.append("text")
+      .attr("transform", "translate(300,400)")
+      .style("text-anchor", "middle")
+      .text("disp");
